@@ -90,7 +90,7 @@ namespace OneKeyToWin_AIO_Sebby
             Config.SubMenu(Player.ChampionName).AddItem(new MenuItem("debug", "Debug", true).SetValue(false));
 
             Config.SubMenu(Player.ChampionName).AddItem(new MenuItem("apEz", "AP Ezreal", true).SetValue(false));
-            Config.SubMenu(Player.ChampionName).AddItem(new MenuItem("stack", "Stack Tear if full mana", true).SetValue(false));
+            Config.SubMenu(Player.ChampionName).AddItem(new MenuItem("stack", "Stack Tear if full mana", true).SetValue(new KeyBind("M".ToCharArray()[0], KeyBindType.Toggle)))
 
             Game.OnUpdate += Game_OnUpdate;
             Drawing.OnDraw += Drawing_OnDraw;
@@ -220,7 +220,7 @@ namespace OneKeyToWin_AIO_Sebby
                     farmQ();
                     lag = Game.Time;
                 }
-                else if (Config.Item("stack", true).GetValue<bool>() && Utils.TickCount - Q.LastCastAttemptT > 4000 && !Player.HasBuff("Recall") && Player.Mana > Player.MaxMana * 0.95 && Program.None && (Items.HasItem(Tear) || Items.HasItem(Manamune)))
+                else if (Config.Item("stack", true).GetValue<bool>() && Utils.TickCount - Q.LastCastAttemptT > 4000 && !Player.HasBuff("Recall") && Player.Mana > Player.MaxMana * 0.55 && Program.None && (Items.HasItem(Tear) || Items.HasItem(Manamune)))
                 {
                     Q.Cast(Player.Position.Extend(Game.CursorPos, 500));
                 }
